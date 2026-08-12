@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peter Boole</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        body {
+            background-image: url("background.jpg");
+            background-color: rgba(255, 255, 255, 0.9);
+            background-blend-mode: lighten;
+        }
+
+        img {
+            transition: all 500ms;
+            animation-duration: 200ms;
+            animation-timing-function: ease-in-out;
+        }
+
+        img:hover {
+            width: 550px;
+        }
+
+        #texto {
+            text-align: center;
+    white-space: pre-line;
+}
+
+        @keyframes bark {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            15% {
+                transform: scale(1.08, 0.92) rotate(-2deg);
+            }
+
+            30% {
+                transform: scale(0.94, 1.08) rotate(2deg);
+            }
+
+            45% {
+                transform: scale(1.1, 0.9) rotate(-2deg);
+            }
+
+            60% {
+                transform: scale(0.97, 1.03) rotate(1deg);
+            }
+
+            75% {
+                transform: scale(1.03, 0.97) rotate(-1deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes voltar {
+            from {
+                transform: rotateY(0);
+            }
+
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        style="display: flex; justify-content: center; align-items: center; height: 100vh; width: 100vw; flex-direction: column;">
+        <img id="image" src="peter boole.png" width="500px" style="border-radius: 10%; margin-bottom: 25px;"
+            onclick="bark()">
+        <h1 id="texto">Opa! Me chamo Peter Boole.</h1>
+        <script>
+            const desculpas = [
+                "Perdão pelo peido… foi um deslize aromático. 🌹\nPrometo que o próximo encontro será apenas de bons ares. ✨",
+                "Desculpa pelo pequeno acidente gasoso…\nAté os cavalheiros às vezes perdem o controle. 🎩💨",
+                "Perdoe-me pelo vento inesperado…\nJuro que não era uma declaração de amor. 🌹💨",
+                "Mil perdões pelo ocorrido.\nFoi apenas o meu charme… em estado gasoso. ✨",
+                "Desculpa pelo peidinho…\nMeu corpo quis participar da conversa. 🥹💨",
+                "Perdão, foi sem querer.\nAté as flores têm seus momentos de primavera. 🌸",
+                "Lamento profundamente pelo aroma inesperado.\nEspero que meu charme compense o estrago. 😌✨",
+                "Perdoe este humilde cavalheiro.\nO vento escapou antes que eu pudesse impedir. 🎩💨",
+                "Desculpa pelo susto…\nPrometo que da próxima vez aviso antes de liberar o trovão. ⛈️💨",
+                "Perdão pelo momento gasoso.\nQue a nossa amizade sobreviva a este vento passageiro. 💨❤️"
+            ];
+            const image = document.getElementById("image");
+
+            let delayTimeout;
+            let returnTimeout;
+
+            function bark() {
+                clearTimeout(delayTimeout);
+                clearTimeout(returnTimeout);
+
+                image.style.animation = "none";
+                void image.offsetWidth;
+
+                image.style.animation =
+                    "bark 450ms cubic-bezier(.36,.07,.19,.97)";
+
+                const audio = new Audio("bark-fart.mp3");
+                audio.currentTime = 0;
+                audio.play();
+
+                delayTimeout = setTimeout(() => {
+                    image.src = "desculpa.png";
+                    texto.textContent = desculpas[Math.floor(Math.random() * desculpas.length)];
+
+                    returnTimeout = setTimeout(() => {
+
+                        image.style.animation = "none";
+                        void image.offsetWidth;
+
+                        image.style.animation = "voltar 600ms ease-in-out";
+
+                        setTimeout(() => {
+                            image.src = "peter boole.png";
+                            texto.textContent = "Opa! Me chamo Peter Boole.";
+                        }, 300);
+
+                    }, 2000);
+
+                }, 500);
+            }
+        </script>
+    </div>
+
+</body>
+
+</html>
